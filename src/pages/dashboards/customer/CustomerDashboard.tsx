@@ -1,19 +1,10 @@
-import { DashboardLayout } from '../../../components/layouts/DashboardLayout';
 import { Link } from 'react-router-dom';
-import { Ticket, Calendar, Star, ArrowRight, TrendingUp } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { DashboardLayout } from '../../../components/layouts/DashboardLayout';
 import { mockEvents } from '../../../data/mockEvents';
-import { formatDate } from '../../../lib/date';
-
-// Mock stats for demonstration
-const stats = {
-  totalTickets: 4,
-  upcomingEvents: 2,
-  pastEvents: 1,
-  totalSpent: 18000
-};
 
 export function CustomerDashboard() {
-  const upcomingEvents = mockEvents.slice(0, 2); // Show only 2 upcoming events
+  const upcomingEvents = mockEvents.slice(0, 2);
 
   return (
     <DashboardLayout type="customer">
@@ -22,59 +13,52 @@ export function CustomerDashboard() {
         
         {/* Stats Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
-            <div className="flex items-center gap-4">
-              <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-full">
-                <Ticket className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-              </div>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border-2 border-primary-100 
+                       dark:border-primary-900/50 shadow-card">
+            <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Total Tickets</p>
-                <p className="text-2xl font-semibold">{stats.totalTickets}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Total Events</p>
+                <p className="text-2xl font-semibold mt-1">2</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
-            <div className="flex items-center gap-4">
-              <div className="p-3 bg-green-100 dark:bg-green-900/20 rounded-full">
-                <Calendar className="w-6 h-6 text-green-600 dark:text-green-400" />
-              </div>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border-2 border-primary-100 
+                       dark:border-primary-900/50 shadow-card">
+            <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Upcoming Events</p>
-                <p className="text-2xl font-semibold">{stats.upcomingEvents}</p>
+                <p className="text-2xl font-semibold mt-1">1</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
-            <div className="flex items-center gap-4">
-              <div className="p-3 bg-purple-100 dark:bg-purple-900/20 rounded-full">
-                <Star className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-              </div>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border-2 border-primary-100 
+                       dark:border-primary-900/50 shadow-card">
+            <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Past Events</p>
-                <p className="text-2xl font-semibold">{stats.pastEvents}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Total Tickets</p>
+                <p className="text-2xl font-semibold mt-1">3</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
-            <div className="flex items-center gap-4">
-              <div className="p-3 bg-orange-100 dark:bg-orange-900/20 rounded-full">
-                <TrendingUp className="w-6 h-6 text-orange-600 dark:text-orange-400" />
-              </div>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border-2 border-primary-100 
+                       dark:border-primary-900/50 shadow-card">
+            <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Total Spent</p>
-                <p className="text-2xl font-semibold">KES {stats.totalSpent.toLocaleString()}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Reviews Given</p>
+                <p className="text-2xl font-semibold mt-1">1</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Upcoming Events Section */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
+        <div className="bg-white dark:bg-gray-800 rounded-lg border-2 border-primary-100 
+                     dark:border-primary-900/50 shadow-card p-6 mb-8">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-lg font-semibold">Upcoming Events</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Upcoming Events</h2>
             <Link
               to="/dashboard/customer/tickets"
               className="flex items-center gap-2 text-primary-600 hover:text-primary-700"
@@ -88,28 +72,25 @@ export function CustomerDashboard() {
             {upcomingEvents.map((event) => (
               <div
                 key={event.id}
-                className="flex gap-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg"
+                className="flex gap-4 p-4 border-2 border-primary-100 dark:border-primary-900/50 
+                         rounded-lg bg-white dark:bg-gray-800 shadow-card 
+                         hover:shadow-card-hover hover:border-primary-200 
+                         dark:hover:border-primary-800/50 transition-all duration-200"
               >
                 <img
                   src={event.imageUrl}
                   alt={event.title}
-                  className="w-24 h-24 object-cover rounded-lg"
+                  className="w-24 h-24 rounded-lg object-cover"
                 />
                 <div className="flex-1">
-                  <h3 className="font-semibold mb-2">{event.title}</h3>
-                  <div className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      {formatDate(event.startDate)}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Ticket className="w-4 h-4" />
-                      Regular Ticket
-                    </div>
-                  </div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">{event.title}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{event.location}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    {new Date(event.startDate).toLocaleDateString()}
+                  </p>
                   <Link
                     to={`/events/${event.id}`}
-                    className="inline-block mt-2 text-primary-600 hover:text-primary-700 text-sm font-medium"
+                    className="text-primary-600 hover:text-primary-700 text-sm font-medium mt-2 inline-block"
                   >
                     View Details
                   </Link>
@@ -120,61 +101,62 @@ export function CustomerDashboard() {
         </div>
 
         {/* Quick Actions */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-          <h2 className="text-lg font-semibold mb-6">Quick Actions</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-lg border-2 border-primary-100 
+                     dark:border-primary-900/50 shadow-card p-6">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">Quick Actions</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <Link
               to="/events"
-              className="flex items-center gap-3 p-4 border border-gray-200 dark:border-gray-700 
-                       rounded-lg hover:border-primary-600 dark:hover:border-primary-400 
-                       transition-colors group"
+              className="flex items-center gap-3 p-4 border-2 border-primary-100 
+                       dark:border-primary-900/50 rounded-lg bg-white dark:bg-gray-800 
+                       shadow-card hover:shadow-card-hover hover:border-primary-200 
+                       dark:hover:border-primary-800/50 transition-all duration-200 group"
             >
-              <div className="p-2 bg-primary-50 dark:bg-primary-900/20 rounded-lg 
-                            group-hover:bg-primary-100 dark:group-hover:bg-primary-900/30">
-                <Ticket className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-              </div>
-              <div>
-                <p className="font-medium">Browse Events</p>
+              <div className="flex-1">
+                <h3 className="font-medium text-gray-900 dark:text-white group-hover:text-primary-600">
+                  Browse Events
+                </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Discover new events
                 </p>
               </div>
+              <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-primary-600" />
             </Link>
 
             <Link
               to="/dashboard/customer/tickets"
-              className="flex items-center gap-3 p-4 border border-gray-200 dark:border-gray-700 
-                       rounded-lg hover:border-primary-600 dark:hover:border-primary-400 
-                       transition-colors group"
+              className="flex items-center gap-3 p-4 border-2 border-primary-100 
+                       dark:border-primary-900/50 rounded-lg bg-white dark:bg-gray-800 
+                       shadow-card hover:shadow-card-hover hover:border-primary-200 
+                       dark:hover:border-primary-800/50 transition-all duration-200 group"
             >
-              <div className="p-2 bg-primary-50 dark:bg-primary-900/20 rounded-lg 
-                            group-hover:bg-primary-100 dark:group-hover:bg-primary-900/30">
-                <Calendar className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-              </div>
-              <div>
-                <p className="font-medium">My Tickets</p>
+              <div className="flex-1">
+                <h3 className="font-medium text-gray-900 dark:text-white group-hover:text-primary-600">
+                  My Tickets
+                </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   View your tickets
                 </p>
               </div>
+              <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-primary-600" />
             </Link>
 
             <Link
               to="/dashboard/customer/reviews"
-              className="flex items-center gap-3 p-4 border border-gray-200 dark:border-gray-700 
-                       rounded-lg hover:border-primary-600 dark:hover:border-primary-400 
-                       transition-colors group"
+              className="flex items-center gap-3 p-4 border-2 border-primary-100 
+                       dark:border-primary-900/50 rounded-lg bg-white dark:bg-gray-800 
+                       shadow-card hover:shadow-card-hover hover:border-primary-200 
+                       dark:hover:border-primary-800/50 transition-all duration-200 group"
             >
-              <div className="p-2 bg-primary-50 dark:bg-primary-900/20 rounded-lg 
-                            group-hover:bg-primary-100 dark:group-hover:bg-primary-900/30">
-                <Star className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-              </div>
-              <div>
-                <p className="font-medium">My Reviews</p>
+              <div className="flex-1">
+                <h3 className="font-medium text-gray-900 dark:text-white group-hover:text-primary-600">
+                  Write Review
+                </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Manage your reviews
+                  Share your experience
                 </p>
               </div>
+              <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-primary-600" />
             </Link>
           </div>
         </div>
